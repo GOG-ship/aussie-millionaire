@@ -1,0 +1,287 @@
+{
+  "title": "Who Wants to Be an Aussie Millionaire?",
+  "currency": "A$",
+  "cast": {
+    "Max": { "role": "host", "shirtColor": "#E8833A", "hairColor": "#3B2A1E", "skinColor": "#F1C9A5" },
+    "Tom": { "role": "expert", "shirtColor": "#2E8B57", "hairColor": "#6B4423", "skinColor": "#F1C9A5" },
+    "Fabi": { "role": "expert", "shirtColor": "#3A6EA5", "hairColor": "#1E1E1E", "skinColor": "#F1C9A5" }
+  },
+  "ladder": [100, 200, 500, 1000, 2000, 5000, 10000, 25000, 50000, 100000, 250000, 1000000],
+  "safeLevels": [4, 8],
+  "intro": [
+    { "file": "audio/intro_1.mp3", "speaker": "Max", "text": "G'day and welcome to Who Wants to Be an Aussie Millionaire! I'm Max, your host. Today we're going on a road trip across Australia, with twelve questions and a top prize of one million Australian dollars! You have three lifelines, and each one works only once. Let me introduce my two experts." },
+    { "file": "audio/intro_2.mp3", "speaker": "Tom", "text": "Hi, I'm Tom! After every answer, Fabi and I will tell you why it was right or wrong, plus a fun fact about Australia." },
+    { "file": "audio/intro_3.mp3", "speaker": "Fabi", "text": "And I'm Fabi! If you get stuck, you can call one of us with Phone a Friend. Just remember: one wrong answer and the game is over. Good luck!" }
+  ],
+  "extras": {
+    "fiftyFifty": { "file": "audio/x_5050.mp3", "speaker": "Max", "text": "Fifty-fifty it is! The computer will now take away two wrong answers. Only two answers are left, so choose wisely!" },
+    "askClass": { "file": "audio/x_askclass.mp3", "speaker": "Max", "text": "Let's ask the class! Everybody, please vote now. Okay, here are the results. But remember: the class can be wrong too!" },
+    "phone": { "file": "audio/x_phone.mp3", "speaker": "Max", "text": "Let's phone a friend! Our expert is already on the line. Listen carefully, because you only get this one call." },
+    "safe": { "file": "audio/x_safe.mp3", "speaker": "Max", "text": "Congratulations, you've reached a safe level! Whatever happens now, you can't leave with less than this amount." },
+    "final": { "file": "audio/x_final.mp3", "speaker": "Max", "text": "This is it, the very last question, for one million Australian dollars! Take a deep breath and listen carefully." },
+    "gameOver": { "file": "audio/x_gameover.mp3", "speaker": "Max", "text": "Oh no, that's the end of our road trip! Thanks for playing Who Wants to Be an Aussie Millionaire. Why not try again? See you next time, mate!" },
+    "winner": { "file": "audio/x_winner.mp3", "speaker": "Max", "text": "Unbelievable! You answered all twelve questions correctly. You are now an Aussie Millionaire! Thanks for travelling with us, and hooroo, that's Aussie for goodbye!" }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "stop": { "name": "Canberra", "lat": -35.28, "lon": 149.13 },
+      "question": "What's the capital of Australia?",
+      "options": { "A": "Sydney", "B": "Melbourne", "C": "Canberra", "D": "Perth" },
+      "correct": "C",
+      "expert": "Tom",
+      "phoneFriend": "Fabi",
+      "factScreen": { "type": "map", "pins": [{ "label": "Canberra", "lat": -35.28, "lon": 149.13, "highlight": true }, { "label": "Sydney", "lat": -33.87, "lon": 151.21 }, { "label": "Melbourne", "lat": -37.81, "lon": 144.96 }] },
+      "clips": {
+        "host": { "file": "audio/q01_host.mp3", "speaker": "Max", "text": "Our road trip starts in the south-east of Australia, in a city full of politicians, museums and wide green parks. But which city is it? Question one, for one hundred Australian dollars: What's the capital of Australia? Is it A: Sydney, B: Melbourne, C: Canberra, or D: Perth?" },
+        "correct": { "file": "audio/q01_correct.mp3", "speaker": "Tom", "text": "Yes, that's correct! The answer is C, Canberra. It's not the biggest city, but it's where the government and Parliament are. You've just won one hundred dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q01_wrong_a.mp3", "speaker": "Tom", "text": "Sorry, Sydney is wrong! It's the biggest and most famous city in Australia, but it's not the capital. The correct answer is C, Canberra." },
+          "B": { "file": "audio/q01_wrong_b.mp3", "speaker": "Tom", "text": "Sorry, Melbourne is wrong! It was the home of the government for a while, from 1901 to 1927, but not anymore. The correct answer is C, Canberra." },
+          "D": { "file": "audio/q01_wrong_d.mp3", "speaker": "Tom", "text": "Sorry, Perth is wrong! Perth is the capital of the state of Western Australia, but not of the whole country. The correct answer is C, Canberra." }
+        },
+        "fact": { "file": "audio/q01_fact.mp3", "speaker": "Tom", "text": "Sydney and Melbourne both wanted to be the capital, so Australia built a brand-new city in between. Two American architects, Walter Burley Griffin and Marion Mahony Griffin, planned it. Parliament first met in Canberra in 1927." },
+        "phone": { "file": "audio/q01_phone.mp3", "speaker": "Fabi", "text": "Hi, it's Fabi! Hmm, the capital... Perth is way too far west. Many people say Sydney, but I think that's a trap. I'm pretty sure it's Canberra!" }
+      }
+    },
+    {
+      "id": 2,
+      "stop": { "name": "Countryside, New South Wales", "lat": -32.5, "lon": 147.5 },
+      "question": "Which of these animals is a marsupial?",
+      "options": { "A": "The emu", "B": "The kangaroo", "C": "The dingo", "D": "The kookaburra" },
+      "correct": "B",
+      "expert": "Fabi",
+      "phoneFriend": "Tom",
+      "factScreen": { "type": "photo", "image": "images/kangaroo.jpg", "caption": "A kangaroo with a joey in its pouch" },
+      "clips": {
+        "host": { "file": "audio/q02_host.mp3", "speaker": "Max", "text": "Let's jump in our car and drive out into the countryside. Watch out, there are wild animals everywhere on the road! Question two, for two hundred dollars: Which of these animals is a marsupial? Is it A: the emu, B: the kangaroo, C: the dingo, or D: the kookaburra?" },
+        "correct": { "file": "audio/q02_correct.mp3", "speaker": "Fabi", "text": "Correct! B, the kangaroo, is a marsupial. Marsupials are mammals that carry their babies in a pouch. You've just won two hundred dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q02_wrong_a.mp3", "speaker": "Fabi", "text": "Sorry, the emu is wrong! The emu is a big bird that can't fly, and birds don't have pouches. The correct answer is B, the kangaroo." },
+          "C": { "file": "audio/q02_wrong_c.mp3", "speaker": "Fabi", "text": "Sorry, the dingo is wrong! The dingo is a wild dog, and dogs don't carry their puppies in a pouch. The correct answer is B, the kangaroo." },
+          "D": { "file": "audio/q02_wrong_d.mp3", "speaker": "Fabi", "text": "Sorry, the kookaburra is wrong! It's a bird that's famous for its call, which sounds like someone laughing. The correct answer is B, the kangaroo." }
+        },
+        "fact": { "file": "audio/q02_fact.mp3", "speaker": "Fabi", "text": "A baby kangaroo is called a joey. When it's born, it's only about the size of a jellybean! It climbs into its mother's pouch and grows there for months. And red kangaroos can jump about eight metres in one hop!" },
+        "phone": { "file": "audio/q02_phone.mp3", "speaker": "Tom", "text": "Hey, it's Tom! A marsupial has a pouch for its babies, right? The emu and the kookaburra are birds, so no. I'm quite sure it's the kangaroo!" }
+      }
+    },
+    {
+      "id": 3,
+      "stop": { "name": "Great Barrier Reef", "lat": -16.9, "lon": 146.2 },
+      "question": "The Great Barrier Reef lies off the coast of which Australian state?",
+      "options": { "A": "Victoria", "B": "Western Australia", "C": "Tasmania", "D": "Queensland" },
+      "correct": "D",
+      "expert": "Tom",
+      "phoneFriend": "Fabi",
+      "factScreen": { "type": "map", "highlightRegion": "Queensland", "drawReefLine": true, "pins": [{ "label": "Great Barrier Reef", "lat": -18.3, "lon": 147.7, "highlight": true }] },
+      "clips": {
+        "host": { "file": "audio/q03_host.mp3", "speaker": "Max", "text": "Now we fly north to the warm, tropical coast. We put on our snorkels and dive into clear water full of colourful fish and coral. Question three, for five hundred dollars: The Great Barrier Reef lies off the coast of which Australian state? Is it A: Victoria, B: Western Australia, C: Tasmania, or D: Queensland?" },
+        "correct": { "file": "audio/q03_correct.mp3", "speaker": "Tom", "text": "That's right! The answer is D, Queensland. The reef lies off Queensland's north-east coast, where the water is warm enough for coral. You've won five hundred dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q03_wrong_a.mp3", "speaker": "Tom", "text": "Sorry, Victoria is wrong! Victoria is in the south-east, and its water is too cold for big coral reefs. The correct answer is D, Queensland." },
+          "B": { "file": "audio/q03_wrong_b.mp3", "speaker": "Tom", "text": "Sorry, Western Australia is wrong! It has a beautiful reef too, called Ningaloo, but not the Great Barrier Reef. The correct answer is D, Queensland." },
+          "C": { "file": "audio/q03_wrong_c.mp3", "speaker": "Tom", "text": "Sorry, Tasmania is wrong! Tasmania is an island in the far south, and it's much too cold there for coral reefs. The correct answer is D, Queensland." }
+        },
+        "fact": { "file": "audio/q03_fact.mp3", "speaker": "Tom", "text": "The Great Barrier Reef is the largest coral reef system in the world. It's more than 2,300 kilometres long and made up of over 2,900 single reefs. It has been a UNESCO World Heritage Site since 1981." },
+        "phone": { "file": "audio/q03_phone.mp3", "speaker": "Fabi", "text": "Hi, Fabi here! The reef is in the north-east, where the water is warm. Tasmania is way too cold for coral. I think it's Queensland, but I'm not a hundred percent sure." }
+      }
+    },
+    {
+      "id": 4,
+      "stop": { "name": "Uluru", "lat": -25.34, "lon": 131.04 },
+      "question": "What's the name of the giant red rock in the Northern Territory?",
+      "options": { "A": "Uluru", "B": "Mount Kosciuszko", "C": "The Twelve Apostles", "D": "Wave Rock" },
+      "correct": "A",
+      "expert": "Fabi",
+      "phoneFriend": "Tom",
+      "factScreen": { "type": "photo", "image": "images/uluru.jpg", "caption": "Uluru at sunset" },
+      "clips": {
+        "host": { "file": "audio/q04_host.mp3", "speaker": "Max", "text": "From the coast, we travel deep into the Red Centre. It's hot, dry and dusty, and in front of us there's something huge and red. Question four, for one thousand dollars: What's the name of the giant red rock in the Northern Territory? Is it A: Uluru, B: Mount Kosciuszko, C: the Twelve Apostles, or D: Wave Rock?" },
+        "correct": { "file": "audio/q04_correct.mp3", "speaker": "Fabi", "text": "Correct! It's A, Uluru. This giant sandstone rock stands right in the middle of the desert in the Northern Territory. You've won one thousand dollars!" },
+        "wrong": {
+          "B": { "file": "audio/q04_wrong_b.mp3", "speaker": "Fabi", "text": "Sorry, Mount Kosciuszko is wrong! It's Australia's highest mountain, but it's in New South Wales and it isn't red. The correct answer is A, Uluru." },
+          "C": { "file": "audio/q04_wrong_c.mp3", "speaker": "Fabi", "text": "Sorry, the Twelve Apostles are the wrong answer! They are rocks standing in the sea in Victoria, along the Great Ocean Road. The correct answer is A, Uluru." },
+          "D": { "file": "audio/q04_wrong_d.mp3", "speaker": "Fabi", "text": "Sorry, Wave Rock is wrong! It's a rock in Western Australia that looks like a giant wave, but it's not in the Northern Territory. The correct answer is A, Uluru." }
+        },
+        "fact": { "file": "audio/q04_fact.mp3", "speaker": "Fabi", "text": "Uluru is about 348 metres high, and it seems to change colour at sunset. It is sacred to the Anangu, the Aboriginal people of the area. That's why climbing Uluru has been banned since 2019." },
+        "phone": { "file": "audio/q04_phone.mp3", "speaker": "Tom", "text": "Hi, it's Tom! Mount Kosciuszko is a mountain, and the Twelve Apostles are by the sea. A red rock in the middle of the desert... I'm sure it's Uluru!" }
+      }
+    },
+    {
+      "id": 5,
+      "stop": { "name": "Flight over Australia", "lat": -25.0, "lon": 134.0 },
+      "question": "Which ocean does NOT touch Australia?",
+      "options": { "A": "The Indian Ocean", "B": "The Atlantic Ocean", "C": "The Pacific Ocean", "D": "The Southern Ocean" },
+      "correct": "B",
+      "expert": "Tom",
+      "phoneFriend": "Fabi",
+      "factScreen": { "type": "map", "oceanLabels": ["Indian Ocean (west)", "Pacific Ocean (east)", "Southern Ocean (south)"], "pins": [] },
+      "clips": {
+        "host": { "file": "audio/q05_host.mp3", "speaker": "Max", "text": "Time to see the whole country from above! We're sitting in a small plane, and below us there's water on almost every side. Question five, for two thousand dollars: Which ocean does NOT touch Australia? Is it A: the Indian Ocean, B: the Atlantic Ocean, C: the Pacific Ocean, or D: the Southern Ocean?" },
+        "correct": { "file": "audio/q05_correct.mp3", "speaker": "Tom", "text": "Yes, correct! The answer is B, the Atlantic Ocean. It's on the other side of the world, between America, Europe and Africa. You've won two thousand dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q05_wrong_a.mp3", "speaker": "Tom", "text": "Sorry, the Indian Ocean is wrong! It touches Australia's west coast, for example near Perth. The correct answer is B, the Atlantic Ocean." },
+          "C": { "file": "audio/q05_wrong_c.mp3", "speaker": "Tom", "text": "Sorry, the Pacific Ocean is wrong! It touches Australia's east coast, for example at Sydney's famous beaches. The correct answer is B, the Atlantic Ocean." },
+          "D": { "file": "audio/q05_wrong_d.mp3", "speaker": "Tom", "text": "Sorry, the Southern Ocean is wrong! It lies south of Australia, between Australia and Antarctica. The correct answer is B, the Atlantic Ocean." }
+        },
+        "fact": { "file": "audio/q05_fact.mp3", "speaker": "Tom", "text": "Australia is the smallest continent, and it's often called the island continent because it's surrounded by water. It has more than 10,000 beaches, so you could visit a new one every day for about 29 years!" },
+        "phone": { "file": "audio/q05_phone.mp3", "speaker": "Fabi", "text": "Hey, it's Fabi! Australia is between the Indian Ocean and the Pacific, and the Southern Ocean is down near Antarctica. So it must be the Atlantic, I think!" }
+      }
+    },
+    {
+      "id": 6,
+      "stop": { "name": "Country town, Queensland", "lat": -27.0, "lon": 145.0 },
+      "question": "In Australian slang, what is a 'barbie'?",
+      "options": { "A": "A doll", "B": "A beach", "C": "A barbecue", "D": "A sheep" },
+      "correct": "C",
+      "expert": "Fabi",
+      "phoneFriend": "Tom",
+      "factScreen": { "type": "drawn", "scene": "slang", "notes": "Cartoon barbecue grill with sausages, surrounded by speech bubbles: 'G'day, mate!', 'arvo = afternoon', 'brekkie = breakfast', 'sunnies = sunglasses'" },
+      "clips": {
+        "host": { "file": "audio/q06_host.mp3", "speaker": "Max", "text": "We land in a small country town, and the locals invite us to a party in their garden. Everyone is talking in Aussie slang, and we don't understand a word! Question six, for five thousand dollars: In Australian slang, what is a 'barbie'? Is it A: a doll, B: a beach, C: a barbecue, or D: a sheep?" },
+        "correct": { "file": "audio/q06_correct.mp3", "speaker": "Fabi", "text": "That's right! C, a barbie is a barbecue. Australians love cooking sausages and meat outside on the barbie with friends. You've won five thousand dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q06_wrong_a.mp3", "speaker": "Fabi", "text": "Ha, sorry, a doll is wrong! Barbie is a famous toy, but in Aussie slang, a barbie means something else. The correct answer is C, a barbecue." },
+          "B": { "file": "audio/q06_wrong_b.mp3", "speaker": "Fabi", "text": "Sorry, a beach is wrong! Australians do love beaches, but they just call it 'the beach', no slang needed. The correct answer is C, a barbecue." },
+          "D": { "file": "audio/q06_wrong_d.mp3", "speaker": "Fabi", "text": "Sorry, a sheep is wrong! Australia does have lots of sheep, but nobody calls them barbies. The correct answer is C, a barbecue." }
+        },
+        "fact": { "file": "audio/q06_fact.mp3", "speaker": "Fabi", "text": "Australians love to make words shorter. 'Arvo' means afternoon, 'brekkie' means breakfast and 'sunnies' are sunglasses. And of course, people say 'G'day, mate!' instead of 'Hello, friend!'" },
+        "phone": { "file": "audio/q06_phone.mp3", "speaker": "Tom", "text": "G'day, it's Tom! Aussies shorten lots of words. A doll would be too easy, I guess. Barbie... barbecue? Yeah, I'd go with the barbecue!" }
+      }
+    },
+    {
+      "id": 7,
+      "stop": { "name": "Sydney Harbour", "lat": -33.86, "lon": 151.21 },
+      "question": "On which date is Australia Day?",
+      "options": { "A": "1 January", "B": "4 July", "C": "25 December", "D": "26 January" },
+      "correct": "D",
+      "expert": "Tom",
+      "phoneFriend": "Fabi",
+      "factScreen": { "type": "drawn", "scene": "australiaDay", "notes": "Cartoon tall ship next to a calendar page showing 26 JANUARY 1788; small map pins for Botany Bay and Sydney Cove" },
+      "clips": {
+        "host": { "file": "audio/q07_host.mp3", "speaker": "Max", "text": "Next stop: Sydney Harbour! There are flags, fireworks and lots of people everywhere, because today is a national holiday. Question seven, for ten thousand dollars: On which date is Australia Day? Is it A: the first of January, B: the fourth of July, C: the twenty-fifth of December, or D: the twenty-sixth of January?" },
+        "correct": { "file": "audio/q07_correct.mp3", "speaker": "Tom", "text": "Correct! The answer is D, the twenty-sixth of January. It's a public holiday, with fireworks, concerts and barbecues all over the country. You've won ten thousand dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q07_wrong_a.mp3", "speaker": "Tom", "text": "Sorry, the first of January is wrong! That's New Year's Day, and Sydney celebrates it with huge fireworks over the harbour. The correct answer is D, the twenty-sixth of January." },
+          "B": { "file": "audio/q07_wrong_b.mp3", "speaker": "Tom", "text": "Sorry, the fourth of July is wrong! That's Independence Day in the USA, not in Australia. The correct answer is D, the twenty-sixth of January." },
+          "C": { "file": "audio/q07_wrong_c.mp3", "speaker": "Tom", "text": "Sorry, the twenty-fifth of December is wrong! That's Christmas, and in Australia it's in summer, so lots of people spend it at the beach. The correct answer is D, the twenty-sixth of January." }
+        },
+        "fact": { "file": "audio/q07_fact.mp3", "speaker": "Tom", "text": "In January 1788, the First Fleet of British ships arrived at Botany Bay. On the 26th, Captain Arthur Phillip raised the British flag at Sydney Cove. Many Indigenous Australians call it Invasion Day or Survival Day, so the date is a big debate today." },
+        "phone": { "file": "audio/q07_phone.mp3", "speaker": "Fabi", "text": "Hi, Fabi here! The fourth of July is the American holiday, and Christmas is in December. I think Australia Day is in January... maybe the twenty-sixth?" }
+      }
+    },
+    {
+      "id": 8,
+      "stop": { "name": "State border", "lat": -29.0, "lon": 141.0 },
+      "question": "How many states does Australia have?",
+      "options": { "A": "Six", "B": "Five", "C": "Eight", "D": "Seven" },
+      "correct": "A",
+      "expert": "Fabi",
+      "phoneFriend": "Tom",
+      "factScreen": { "type": "map", "showStates": true, "labels": ["New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania", "Northern Territory (territory)", "Australian Capital Territory (territory)"] },
+      "clips": {
+        "host": { "file": "audio/q08_host.mp3", "speaker": "Max", "text": "We get back on the road and drive across a border, from one state into the next. But wait, how many are there? Question eight, for twenty-five thousand dollars: How many states does Australia have? Is it A: six, B: five, C: eight, or D: seven?" },
+        "correct": { "file": "audio/q08_correct.mp3", "speaker": "Fabi", "text": "Yes, that's correct! The answer is A, six states. Each state has its own government and its own capital city. You've won twenty-five thousand dollars!" },
+        "wrong": {
+          "B": { "file": "audio/q08_wrong_b.mp3", "speaker": "Fabi", "text": "Sorry, five is wrong! Lots of people forget Tasmania, the island state in the south. The correct answer is A, six states." },
+          "C": { "file": "audio/q08_wrong_c.mp3", "speaker": "Fabi", "text": "Sorry, eight is wrong! Australia has eight states and territories together, but only six of them are states. The correct answer is A, six states." },
+          "D": { "file": "audio/q08_wrong_d.mp3", "speaker": "Fabi", "text": "Sorry, seven is wrong! Maybe you counted the Northern Territory, but a territory isn't a state. The correct answer is A, six states." }
+        },
+        "fact": { "file": "audio/q08_fact.mp3", "speaker": "Fabi", "text": "The six states are New South Wales, Victoria, Queensland, Western Australia, South Australia and Tasmania. There are also two big territories: the Northern Territory and the Australian Capital Territory, where Canberra is." },
+        "phone": { "file": "audio/q08_phone.mp3", "speaker": "Tom", "text": "Hi, it's Tom! Hmm, there are states and territories, and that's confusing. If you only count the states, I think it's six. But I'm not totally sure!" }
+      }
+    },
+    {
+      "id": 9,
+      "stop": { "name": "Rainforest river, Queensland", "lat": -21.1, "lon": 148.5 },
+      "question": "Which of these mammals lays eggs?",
+      "options": { "A": "The koala", "B": "The platypus", "C": "The wombat", "D": "The quokka" },
+      "correct": "B",
+      "expert": "Tom",
+      "phoneFriend": "Fabi",
+      "factScreen": { "type": "photo", "image": "images/platypus.jpg", "caption": "A platypus swimming" },
+      "clips": {
+        "host": { "file": "audio/q09_host.mp3", "speaker": "Max", "text": "Now we go for a quiet walk along a river in the rainforest, looking for Australia's strangest animals. Shhh, don't scare them away! Question nine, for fifty thousand dollars: Which of these mammals lays eggs? Is it A: the koala, B: the platypus, C: the wombat, or D: the quokka?" },
+        "correct": { "file": "audio/q09_correct.mp3", "speaker": "Tom", "text": "That's right! The answer is B, the platypus. It's a mammal, so it has fur and feeds its babies milk, but it lays eggs! You've won fifty thousand dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q09_wrong_a.mp3", "speaker": "Tom", "text": "Sorry, the koala is wrong! Koalas are marsupials, so their babies grow in a pouch, not in an egg. The correct answer is B, the platypus." },
+          "C": { "file": "audio/q09_wrong_c.mp3", "speaker": "Tom", "text": "Sorry, the wombat is wrong! Wombats are marsupials too, and their pouch opens backwards, so no dirt gets in when they dig. The correct answer is B, the platypus." },
+          "D": { "file": "audio/q09_wrong_d.mp3", "speaker": "Tom", "text": "Sorry, the quokka is wrong! The quokka is a small marsupial, famous because it always looks like it's smiling. The correct answer is B, the platypus." }
+        },
+        "fact": { "file": "audio/q09_fact.mp3", "speaker": "Tom", "text": "The platypus is a really strange animal. It has a bill like a duck, a tail like a beaver, and the males even have a venomous spike on their back legs. The only other mammals that lay eggs are echidnas." },
+        "phone": { "file": "audio/q09_phone.mp3", "speaker": "Fabi", "text": "Hi, it's Fabi! Koalas and wombats have pouches, I know that. The platypus looks like a mix of a duck and a beaver... so maybe it lays eggs like a duck?" }
+      }
+    },
+    {
+      "id": 10,
+      "stop": { "name": "Sydney Opera House", "lat": -33.86, "lon": 151.21 },
+      "question": "In which year did the Sydney Opera House open?",
+      "options": { "A": "1923", "B": "1948", "C": "1960", "D": "1973" },
+      "correct": "D",
+      "expert": "Fabi",
+      "phoneFriend": "Tom",
+      "factScreen": { "type": "photo", "image": "images/opera-house.jpg", "caption": "The Sydney Opera House" },
+      "clips": {
+        "host": { "file": "audio/q10_host.mp3", "speaker": "Max", "text": "Back in Sydney, we're standing in front of one of the most famous buildings in the world. Its roof looks like big white sails. Question ten, for one hundred thousand dollars: In which year did the Sydney Opera House open? Was it A: 1923, B: 1948, C: 1960, or D: 1973?" },
+        "correct": { "file": "audio/q10_correct.mp3", "speaker": "Fabi", "text": "Correct! The answer is D, 1973. Building it took fourteen years, from 1959 to 1973. The plan was just four years! You've won one hundred thousand dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q10_wrong_a.mp3", "speaker": "Fabi", "text": "Sorry, 1923 is wrong! That's far too early. The architect who designed the Opera House was only about five years old then! The correct answer is D, 1973." },
+          "B": { "file": "audio/q10_wrong_b.mp3", "speaker": "Fabi", "text": "Sorry, 1948 is wrong! Back then, the Opera House didn't even have a design yet. The correct answer is D, 1973." },
+          "C": { "file": "audio/q10_wrong_c.mp3", "speaker": "Fabi", "text": "Sorry, 1960 is wrong! In 1960, the building work had only just started, and it took thirteen more years to finish. The correct answer is D, 1973." }
+        },
+        "fact": { "file": "audio/q10_fact.mp3", "speaker": "Fabi", "text": "The Opera House was designed by the Danish architect Jørn Utzon, and Queen Elizabeth the Second opened it. Its roof is covered with more than one million tiles, and it's a UNESCO World Heritage Site." },
+        "phone": { "file": "audio/q10_phone.mp3", "speaker": "Tom", "text": "Hi, Tom here! The Opera House looks really modern, so I don't think it's 1923. I'd say one of the later years... maybe 1973? Sorry, I'm only guessing!" }
+      }
+    },
+    {
+      "id": 11,
+      "stop": { "name": "Kakadu National Park", "lat": -12.8, "lon": 132.4 },
+      "question": "Indigenous Australians have lived in Australia for more than...",
+      "options": { "A": "500 years", "B": "5,000 years", "C": "50,000 years", "D": "5 million years" },
+      "correct": "C",
+      "expert": "Tom",
+      "phoneFriend": "Fabi",
+      "factScreen": { "type": "photo", "image": "images/kakadu.jpg", "caption": "Landscape in Kakadu National Park" },
+      "clips": {
+        "host": { "file": "audio/q11_host.mp3", "speaker": "Max", "text": "Our trip takes us north to Kakadu National Park. Here you can see rock paintings that are thousands of years old. Question eleven, for two hundred and fifty thousand dollars: Indigenous Australians have lived in Australia for more than... A: 500 years, B: 5,000 years, C: 50,000 years, or D: 5 million years?" },
+        "correct": { "file": "audio/q11_correct.mp3", "speaker": "Tom", "text": "Yes, that's right! The answer is C, more than 50,000 years. Some scientists even think it could be 65,000 years. You've won two hundred and fifty thousand dollars!" },
+        "wrong": {
+          "A": { "file": "audio/q11_wrong_a.mp3", "speaker": "Tom", "text": "Sorry, 500 years is wrong! That's much too short. 500 years ago, no Europeans had even reached Australia yet. The correct answer is C, more than 50,000 years." },
+          "B": { "file": "audio/q11_wrong_b.mp3", "speaker": "Tom", "text": "Sorry, 5,000 years is wrong! That's even older than the pyramids in Egypt, but people lived in Australia much, much longer. The correct answer is C, more than 50,000 years." },
+          "D": { "file": "audio/q11_wrong_d.mp3", "speaker": "Tom", "text": "Sorry, 5 million years is wrong! That's far too long. Modern humans have only existed for about 300,000 years. The correct answer is C, more than 50,000 years." }
+        },
+        "fact": { "file": "audio/q11_fact.mp3", "speaker": "Tom", "text": "Aboriginal and Torres Strait Islander peoples have one of the oldest living cultures in the world. Before 1788, they spoke more than 250 different languages. Many of their Dreaming stories are still told today." },
+        "phone": { "file": "audio/q11_phone.mp3", "speaker": "Fabi", "text": "Hey, it's Fabi! Five million years is too long, there weren't even humans back then. I remember it's a really, really long time... I'd say 50,000 years." }
+      }
+    },
+    {
+      "id": 12,
+      "stop": { "name": "Canberra", "lat": -35.28, "lon": 149.13 },
+      "question": "In which year did Australia become one country, called a federation?",
+      "options": { "A": "1901", "B": "1788", "C": "1851", "D": "1945" },
+      "correct": "A",
+      "expert": "Fabi",
+      "phoneFriend": "Tom",
+      "factScreen": { "type": "photo", "image": "images/parliament-house.jpg", "caption": "Parliament House in Canberra" },
+      "clips": {
+        "host": { "file": "audio/q12_host.mp3", "speaker": "Max", "text": "Our road trip ends where it started, in Canberra, right in front of Parliament House. This is the big one! Question twelve, for one million Australian dollars: In which year did Australia become one country, called a federation? Was it A: 1901, B: 1788, C: 1851, or D: 1945?" },
+        "correct": { "file": "audio/q12_correct.mp3", "speaker": "Fabi", "text": "Yes! The answer is A, 1901! On the first of January, six colonies joined together and became one country. You've just won one million dollars!" },
+        "wrong": {
+          "B": { "file": "audio/q12_wrong_b.mp3", "speaker": "Fabi", "text": "Oh no, 1788 is wrong! That's when the First Fleet of British ships arrived, but Australia wasn't one country yet. The correct answer is A, 1901." },
+          "C": { "file": "audio/q12_wrong_c.mp3", "speaker": "Fabi", "text": "Oh no, 1851 is wrong! That's when the gold rush started, and lots of people came to Australia to get rich. The correct answer is A, 1901." },
+          "D": { "file": "audio/q12_wrong_d.mp3", "speaker": "Fabi", "text": "Oh no, 1945 is wrong! That's when World War Two ended, but Australia had already been one country for a long time. The correct answer is A, 1901." }
+        },
+        "fact": { "file": "audio/q12_fact.mp3", "speaker": "Fabi", "text": "The new country was called the Commonwealth of Australia, and Edmund Barton became its first Prime Minister. At the start, Parliament met in Melbourne, until Canberra was ready in 1927." },
+        "phone": { "file": "audio/q12_phone.mp3", "speaker": "Tom", "text": "Hi, it's Tom! 1788 was when the British arrived, so that's not it. I think Australia became one country around 1900... so maybe 1901?" }
+      }
+    }
+  ],
+  "photoCredits": [
+    { "image": "images/kangaroo.jpg", "author": "TODO", "license": "TODO", "source": "TODO (Wikimedia Commons link)" },
+    { "image": "images/uluru.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
+    { "image": "images/platypus.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
+    { "image": "images/opera-house.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
+    { "image": "images/kakadu.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
+    { "image": "images/parliament-house.jpg", "author": "TODO", "license": "TODO", "source": "TODO" }
+  ]
+}

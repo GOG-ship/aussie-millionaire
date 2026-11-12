@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0e2a">
+  <!-- The real title is set by game.js from questions.json -->
+  <title>Quiz show</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- =====================================================================
+     THE GAME (studio view)
+     Layout: top bar / stage (the studio) / contestant desk / prize ladder
+     ===================================================================== -->
+<div class="game" id="game" data-state="LOADING">
+
+  <!-- ---------- Top bar: logo, lifelines, sound buttons ---------- -->
+  <header class="topbar">
+    <div class="logo logo-small" id="logo-small"></div>
+
+    <div class="lifelines" role="group" aria-label="Lifelines">
+      <button type="button" class="lifeline" id="ll-fiftyFifty" aria-label="Lifeline 50:50" title="50:50" disabled>
+        <span class="lifeline-text">50:50</span>
+      </button>
+      <button type="button" class="lifeline" id="ll-askClass" aria-label="Lifeline Ask the Class" title="Ask the Class" disabled>
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="15" r="7"/><path d="M11 40c0-9 6-14 13-14s13 5 13 14z"/>
+          <circle cx="9" cy="20" r="5"/><path d="M0 40c0-7 4-11 9-11 2 0 4 1 5 2-3 2-5 5-5 9z"/>
+          <circle cx="39" cy="20" r="5"/><path d="M48 40c0-7-4-11-9-11-2 0-4 1-5 2 3 2 5 5 5 9z"/>
+        </svg>
+      </button>
+      <button type="button" class="lifeline" id="ll-phone" aria-label="Lifeline Phone a Friend" title="Phone a Friend" disabled>
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M14 6c2-1 4 0 5 2l3 6c1 2 0 4-1 5l-3 2c2 5 6 9 11 11l2-3c1-1 3-2 5-1l6 3c2 1 3 3 2 5l-1 3c-1 3-4 5-8 4C21 41 8 28 5 14c-1-4 1-7 4-8z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="tools">
+      <button type="button" class="tool" id="btn-mute" aria-pressed="false" aria-label="Mute" title="Mute">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M8 18h8l10-9v30l-10-9H8z"/>
+          <path class="sound-waves" d="M31 17c4 4 4 10 0 14M35 12c7 7 7 17 0 24" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button type="button" class="tool" id="btn-subs" aria-pressed="true" aria-label="Subtitles" title="Subtitles on/off">CC</button>
+      <button type="button" class="tool tool-prizes" id="btn-prizes" aria-expanded="false" aria-controls="ladder">Prizes</button>
+    </div>
+  </header>
+
+  <!-- ---------- Stage: the TV studio, seen from the contestant's chair ---------- -->
+  <main class="stage dark" id="stage">
+    <!-- Everything inside .camera zooms together when we look at the big screen -->
+    <div class="camera" id="camera">
+      <div class="wall"></div>
+
+      <!-- Spotlights on the ceiling (filled by game.js) -->
+      <div class="beams" id="beams"></div>
+
+      <!-- The big screen on the wall behind Max -->
+      <div class="screen" id="screen">
+        <div class="screen-main" id="screen-main"></div>
+        <!-- Video-call frame for the experts (Tom and Fabi) -->
+        <div class="call" id="call" data-mode="hidden">
+          <div class="call-video" id="call-video"></div>
+          <div class="call-bar">
+            <span class="live-dot"></span><span class="live-word">LIVE</span>
+            <span class="call-name" id="call-name"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark audience at the sides (filled by game.js) -->
+      <div class="audience audience-left" id="audience-left"></div>
+      <div class="audience audience-right" id="audience-right"></div>
+      <div class="floor"></div>
+
+      <!-- Black layer used to dim the lights -->
+      <div class="dimmer"></div>
+
+      <!-- Max, the host (the SVG is drawn by game.js with the colours from questions.json) -->
+      <div class="host offstage" id="host"><div class="host-bob" id="host-figure"></div></div>
+      <div class="host-desk"><div class="name-tag" id="host-name"></div></div>
+    </div>
+  </main>
+
+  <!-- ---------- Contestant desk: subtitles and the four answer buttons ---------- -->
+  <section class="desk" id="desk">
+    <div class="desk-inner">
+      <div class="subtitle-panel">
+        <p class="subtitle" id="subtitle" aria-live="polite"></p>
+        <div class="clip-buttons">
+          <button type="button" class="clip-btn" id="btn-skip" disabled>Skip</button>
+          <button type="button" class="clip-btn" id="btn-replay" disabled>Replay</button>
+        </div>
+      </div>
+      <div class="answers empty" id="answers" role="group" aria-label="Answers"></div>
+    </div>
+  </section>
+
+  <!-- ---------- Prize ladder (right side, or a drawer on phones) ---------- -->
+  <aside class="ladder" id="ladder" aria-label="Prize ladder">
+    <div class="ladder-head">
+      <h2>Prizes</h2>
+      <button type="button" class="tool ladder-close" id="btn-ladder-close" aria-label="Close prizes">&times;</button>
+    </div>
+    <ol class="ladder-list" id="ladder-list"></ol>
+  </aside>
+</div>
+
+<!-- Confetti for the winner (pieces are added by game.js) -->
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+
+<!-- =====================================================================
+     OVERLAY SCREENS: start, result, photo credits
+     ===================================================================== -->
+<div class="overlay" id="start-screen">
+  <div class="stars" id="start-stars"></div>
+  <h1 class="logo logo-big" id="logo-big"></h1>
+  <p class="tagline">A road trip across Australia</p>
+  <button type="button" class="big-btn" id="btn-start" disabled>Loading…</button>
+  <p class="load-error" id="load-error" hidden></p>
+  <button type="button" class="link-btn" id="btn-credits-start">Photo credits</button>
+</div>
+
+<div class="overlay" id="result-screen" hidden>
+  <div class="card">
+    <h2 id="result-title"></h2>
+    <p class="result-label">You won</p>
+    <p class="result-amount" id="result-amount"></p>
+    <p class="result-score" id="result-score"></p>
+    <div class="button-row">
+      <button type="button" class="big-btn" id="btn-again">Play again</button>
+      <button type="button" class="ghost-btn" id="btn-credits">Photo credits</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="credits-screen" hidden>
+  <div class="card">
+    <h2>Photo credits</h2>
+    <ul class="credits-list" id="credits-list"></ul>
+    <p class="made-by">Made by Max, Tom and Fabi for English class. Voices: Max (host), Tom and Fabi (experts).</p>
+    <div class="button-row">
+      <button type="button" class="big-btn" id="btn-credits-back">Back</button>
+    </div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

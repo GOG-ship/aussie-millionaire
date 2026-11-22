@@ -1899,7 +1899,8 @@ async function boot() {
   connectButtons();
   if (FAST) document.documentElement.classList.add('fast');
   try {
-    const response = await fetch('questions.json');
+    // no-cache: always ask the server for the newest questions.json
+    const response = await fetch('questions.json', { cache: 'no-cache' });
     if (!response.ok) throw new Error('questions.json: ' + response.status);
     DATA = await response.json();
   } catch (error) {

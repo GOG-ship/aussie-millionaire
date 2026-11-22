@@ -6,7 +6,9 @@
   <meta name="theme-color" content="#0a0e2a">
   <!-- The real title is set by game.js from questions.json -->
   <title>Quiz show</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- "?v=..." makes browsers (especially on phones) load the new file after an update.
+       Change the number in BOTH lines every time you change style.css or game.js. -->
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -149,6 +151,6 @@
   </div>
 </div>
 
-<script src="game.js"></script>
+<script src="game.js?v=3"></script>
 </body>
 </html>

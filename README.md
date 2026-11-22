@@ -96,6 +96,11 @@ same as `uluru.jpg`.
 
 ## 8. Good to know
 
+- **After an update, a phone may still show the old game** because it keeps old
+  files for a while. To stop this, `index.html` loads `style.css?v=3` and
+  `game.js?v=3`. When you change `style.css` or `game.js`, make the number bigger
+  in both lines (for example `?v=4`). Then all phones load the new files.
+
 - All question texts live in `questions.json`. If you change a text there, the game changes too.
 - While mp3 files or photos are missing, the browser console shows red
   "404 (File not found)" lines. That is normal and goes away when the files are there.

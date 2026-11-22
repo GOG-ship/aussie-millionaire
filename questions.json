@@ -277,11 +277,11 @@
     }
   ],
   "photoCredits": [
-    { "image": "images/kangaroo.jpg", "author": "TODO", "license": "TODO", "source": "TODO (Wikimedia Commons link)" },
-    { "image": "images/uluru.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
-    { "image": "images/platypus.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
-    { "image": "images/opera-house.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
-    { "image": "images/kakadu.jpg", "author": "TODO", "license": "TODO", "source": "TODO" },
-    { "image": "images/parliament-house.jpg", "author": "TODO", "license": "TODO", "source": "TODO" }
+    { "image": "images/kangaroo.jpg", "author": "Toby Hudson", "license": "CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0), resized", "source": "https://commons.wikimedia.org/wiki/File:Eastern_Grey_Kangaroo_Feeding.jpg" },
+    { "image": "images/uluru.jpg", "author": "Matheus Hobold Sovernigo", "license": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), resized", "source": "https://commons.wikimedia.org/wiki/File:Golden_Uluru_Sunset.jpg" },
+    { "image": "images/platypus.jpg", "author": "Maria Grist", "license": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), resized", "source": "https://commons.wikimedia.org/wiki/File:Platypus_swimming.jpg" },
+    { "image": "images/opera-house.jpg", "author": "Dietmar Rabich", "license": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), resized", "source": "https://commons.wikimedia.org/wiki/File:Sydney_(AU),_Opera_House_--_2019_--_2280.jpg" },
+    { "image": "images/kakadu.jpg", "author": "Dietmar Rabich", "license": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), resized", "source": "https://commons.wikimedia.org/wiki/File:Kakadu_(AU),_Kakadu_National_Park,_Nadap_Lookout_--_2019_--_4200.jpg" },
+    { "image": "images/parliament-house.jpg", "author": "Dietmar Rabich", "license": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), resized", "source": "https://commons.wikimedia.org/wiki/File:Canberra_(AU),_Parliament_House_--_2019_--_1746.jpg" }
   ]
 }

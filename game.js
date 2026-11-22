@@ -1117,7 +1117,8 @@ async function travelTo(index) {
   van.innerHTML = VAN_SVG;
   if (to.lon < from.lon) van.classList.add('flip');   // drive to the left
   van.style.setProperty('--travel-time', SETTINGS.travelMs * SPEED + 'ms');
-  view.append(el('div', 'stop-pill', to.name));
+  // No stop name here: it could give away the answer.
+  // The name is shown later on the fun-fact screen (see showFact).
 
   showMain(view);
   await wait(500);
@@ -1218,6 +1219,8 @@ function arrangeMapLabels(view) {
     if (box.right > frame.right - gap) label.style.marginLeft = frame.right - gap - box.right + 'px';
     taken.push({ pin: null, box: label.getBoundingClientRect() });
   });
+  // The stop name in the bottom left corner
+  view.querySelectorAll('.fact-stop').forEach((label) => taken.push({ pin: null, box: label.getBoundingClientRect() }));
   // The small video call sits in the top left corner
   taken.push({ pin: null, box: { left: frame.left, top: frame.top, right: frame.left + frame.width * 0.2, bottom: frame.top + frame.height * 0.36 } });
 
@@ -1345,6 +1348,9 @@ async function showFact(q) {
   } else {
     view = factDrawnView(fact);
   }
+
+  // Now the answer is known, so we can say where we are (stop.name).
+  if (q.stop && q.stop.name) view.append(el('div', 'fact-stop', q.stop.name));
 
   // Texts inside the fact are sized so they are readable AFTER the zoom.
   const fontSize = factFontSize(computeZoom().scale) + 'px';

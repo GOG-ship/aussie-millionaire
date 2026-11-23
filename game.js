@@ -490,6 +490,8 @@ function personSVG(name, variant) {
   const skin = safeColor(info.skinColor, '#f1c9a5');
   const full = variant === 'full';
   const outline = 'stroke="rgba(0,0,0,.18)" stroke-width="2"';
+  const SHADE = 'rgba(90,40,20,.2)';   // darker skin: hollow cheeks, jaw edge, brow ridge, neck shadow
+  const LINE = 'rgba(90,40,20,.45)';   // nose and chin cleft
 
   // Three different hair styles, so the three characters don't look the same.
   const hairStyles = [
@@ -524,16 +526,35 @@ function personSVG(name, variant) {
     <rect x="56" y="104" width="88" height="${full ? 160 : 150}" rx="30" fill="${shirt}"/>
     ${leftArm}
     ${variant === 'phone' ? '' : rightArm}
-    <rect x="89" y="88" width="22" height="28" rx="9" fill="${skin}"/>
-    <path d="M85 107 Q100 124 115 107" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="3" stroke-linecap="round"/>
+    <!-- Thick neck with a shadow under the jaw -->
+    <!-- Thick neck with a shadow under the jaw -->
+    <rect x="80" y="90" width="40" height="28" rx="9" fill="${skin}"/>
+    <rect x="80" y="103" width="40" height="8" fill="${SHADE}"/>
+    <path d="M78 107 Q100 128 122 107" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="3" stroke-linecap="round"/>
     <g class="head">
-      <circle cx="63" cy="66" r="7" fill="${skin}"/><circle cx="137" cy="66" r="7" fill="${skin}"/>
-      <ellipse cx="100" cy="62" rx="36" ry="40" fill="${skin}"/>
+      <circle cx="59" cy="68" r="7" fill="${skin}"/><circle cx="141" cy="68" r="7" fill="${skin}"/>
+      <!-- "Gigachad" head: high cheekbones, hollow below them, flared jaw corners, broad square chin -->
+      <path d="M64 46 Q66 18 100 18 Q134 18 136 46 L139 66 L137 77 L143 88 L118 106 L104 107 Q100 104.5 96 107 L82 106 L57 88 L63 77 L61 66 Z" fill="${skin}"/>
       ${hairStyles[styleNumber]}
-      <g class="eyes"><circle cx="86" cy="65" r="4.5" fill="#1d1d2b"/><circle cx="114" cy="65" r="4.5" fill="#1d1d2b"/></g>
-      <circle cx="75" cy="79" r="6" fill="rgba(255,110,110,.25)"/><circle cx="125" cy="79" r="6" fill="rgba(255,110,110,.25)"/>
-      <path class="mouth-closed" d="M88 82 Q100 93 112 82" fill="none" stroke="#7a2c2c" stroke-width="3.5" stroke-linecap="round"/>
-      <ellipse class="mouth-open-shape" cx="100" cy="86" rx="9" ry="8" fill="#7a2230"/>
+      <!-- jaw edge shading, hollow cheeks, cheekbone highlights -->
+      <path d="M57 88 L82 106 L84 101 L63 86 Z M143 88 L118 106 L116 101 L137 86 Z" fill="${SHADE}"/>
+      <path d="M63 74 Q77 77 82 94 Q69 89 63 74 Z M137 74 Q123 77 118 94 Q131 89 137 74 Z" fill="${SHADE}"/>
+      <ellipse cx="71" cy="73" rx="8" ry="2.6" transform="rotate(-16 71 73)" fill="rgba(255,255,255,.45)"/>
+      <ellipse cx="129" cy="73" rx="8" ry="2.6" transform="rotate(16 129 73)" fill="rgba(255,255,255,.45)"/>
+      <!-- heavy brow ridge (shadow under each brow) and thick straight eyebrows -->
+      <path d="M71 61 L96 63.5 L95 67 Q84 65.5 72 67.5 Z M129 61 L104 63.5 L105 67 Q116 65.5 128 67.5 Z" fill="${SHADE}"/>
+      <path d="M70 55 L96 58 L96 63.5 L70 61 Z M130 55 L104 58 L104 63.5 L130 61 Z" fill="${hair}"/>
+      <!-- narrow, focused eyes -->
+      <g class="eyes"><path d="M76 68.5 L87 65.5 L96 68.5 L87 71 Z M124 68.5 L113 65.5 L104 68.5 L113 71 Z" fill="#1d1d2b"/></g>
+      <!-- nose and chin cleft -->
+      <path d="M100 70 L96.5 82 L101 83" fill="none" stroke="${LINE}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M100 99 Q98.5 102.5 100 106" fill="none" stroke="${LINE}" stroke-width="2" stroke-linecap="round"/>
+      <!-- confident smirk (closed) and open mouth for talking -->
+      <path class="mouth-closed" d="M88 91 Q99 94.5 110 89 L113 85.5" fill="none" stroke="#7a2c2c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <g class="mouth-open-shape">
+        <path d="M88 90 Q100 87 112 88 Q110 99 100 99 Q90 99 88 90 Z" fill="#7a2230"/>
+        <path d="M90.5 90.5 Q100 88.5 109.5 89 L109 92.5 Q100 93 91.5 93.5 Z" fill="#ffffff"/>
+      </g>
     </g>
     ${variant === 'phone' ? phoneArm : ''}
   </svg>`;

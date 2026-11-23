@@ -313,7 +313,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #fff; outline-offset:
 .person .mouth-open-shape { display: none; }
 .person.mouth-open .mouth-open-shape { display: inline; }
 .person.mouth-open .mouth-closed { display: none; }
-.person .eyes { transform-origin: 100px 65px; animation: blink 4.5s infinite; }
+.person .eyes { transform-origin: 100px 68px; animation: blink 4.5s infinite; }
 @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
 
 /* Speaking: gentle bounce and a gold glow */

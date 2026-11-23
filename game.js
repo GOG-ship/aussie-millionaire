@@ -489,7 +489,13 @@ function personSVG(name, variant) {
   const hair = safeColor(info.hairColor, '#3b2a1e');
   const skin = safeColor(info.skinColor, '#f1c9a5');
   const full = variant === 'full';
-  const outline = 'stroke="rgba(0,0,0,.18)" stroke-width="2"';
+  // Suit colours. The tie and the pocket square use shirtColor from questions.json.
+  const tie = shirt;
+  const JACKET = '#363b4c';        // charcoal jacket and trousers
+  const JACKET_DARK = '#2a2e3c';   // back leg, sleeve edges
+  const LAPEL = '#454b5f';         // slightly lighter lapels
+  const SHIRT_WHITE = '#f4f5f8';
+  const RIM = 'stroke="rgba(255,255,255,.18)" stroke-width="2"';  // thin light edge, so the dark suit shows on the dark studio
   const SHADE = 'rgba(90,40,20,.2)';   // darker skin: hollow cheeks, jaw edge, brow ridge, neck shadow
   const LINE = 'rgba(90,40,20,.45)';   // nose and chin cleft
 
@@ -503,19 +509,24 @@ function personSVG(name, variant) {
   const styleNumber = Math.max(0, Object.keys(DATA.cast || {}).indexOf(name)) % hairStyles.length;
 
   const legs = full ? `
-    <g class="leg leg-l"><rect x="72" y="244" width="26" height="130" rx="12" fill="#27295a"/><ellipse cx="83" cy="378" rx="19" ry="10" fill="#14152e"/></g>
-    <g class="leg leg-r"><rect x="102" y="244" width="26" height="130" rx="12" fill="#30336e"/><ellipse cx="117" cy="378" rx="19" ry="10" fill="#14152e"/></g>` : '';
+    <g class="leg leg-l"><rect x="72" y="244" width="26" height="130" rx="12" fill="${JACKET_DARK}"/><ellipse cx="83" cy="378" rx="19" ry="10" fill="#14152e"/></g>
+    <g class="leg leg-r"><rect x="102" y="244" width="26" height="130" rx="12" fill="${JACKET}"/><ellipse cx="117" cy="378" rx="19" ry="10" fill="#14152e"/></g>` : '';
 
+  const SLEEVE = 'stroke="rgba(0,0,0,.45)" stroke-width="2"';
+  // The arms hang slightly inwards along the narrow waist (inner rotate), so the V shape stays visible.
+  // The outer <g class="arm"> is what the CSS animations (walk, wave, cheer) turn.
   const leftArm = `
-    <g class="arm arm-l"><rect x="48" y="112" width="26" height="106" rx="13" fill="${shirt}" ${outline}/><circle cx="61" cy="222" r="12" fill="${skin}"/></g>`;
+    <g class="arm arm-l"><g transform="rotate(-9 44 122)"><rect x="31" y="110" width="26" height="104" rx="13" fill="${JACKET}" ${SLEEVE}/>
+      <rect x="34" y="204" width="20" height="7" rx="2" fill="${SHIRT_WHITE}"/><circle cx="44" cy="218" r="12" fill="${skin}"/></g></g>`;
 
   const rightArm = `
-    <g class="arm arm-r"><rect x="126" y="112" width="26" height="106" rx="13" fill="${shirt}" ${outline}/><circle cx="139" cy="222" r="12" fill="${skin}"/></g>`;
+    <g class="arm arm-r"><g transform="rotate(9 156 122)"><rect x="143" y="110" width="26" height="104" rx="13" fill="${JACKET}" ${SLEEVE}/>
+      <rect x="146" y="204" width="20" height="7" rx="2" fill="${SHIRT_WHITE}"/><circle cx="156" cy="218" r="12" fill="${skin}"/></g></g>`;
 
   // Right arm bent up, holding a phone to the ear
   const phoneArm = `
     <g class="arm-phone">
-      <path d="M139 126 L162 176 L150 100" fill="none" stroke="${shirt}" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M156 122 L172 172 L153 102" fill="none" stroke="${JACKET}" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
       <rect x="137" y="40" width="17" height="52" rx="6" fill="#15172e" transform="rotate(8 145 66)"/>
       <circle cx="151" cy="90" r="12" fill="${skin}"/>
     </g>`;
@@ -523,14 +534,27 @@ function personSVG(name, variant) {
   return `
   <svg class="person" viewBox="0 0 200 ${full ? 400 : 236}" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
     ${legs}
-    <rect x="56" y="104" width="88" height="${full ? 160 : 150}" rx="30" fill="${shirt}"/>
-    ${leftArm}
-    ${variant === 'phone' ? '' : rightArm}
-    <!-- Thick neck with a shadow under the jaw -->
+    <!-- V-shaped suit jacket: very broad shoulders, narrow waist -->
+    <path d="M84 100 L116 100 Q152 102 164 111 Q171 117 168 132 L148 214 L140 262 L60 262 L52 214 L32 132 Q29 117 36 111 Q48 102 84 100 Z" fill="${JACKET}" ${RIM}/>
     <!-- Thick neck with a shadow under the jaw -->
     <rect x="80" y="90" width="40" height="28" rx="9" fill="${skin}"/>
     <rect x="80" y="103" width="40" height="8" fill="${SHADE}"/>
-    <path d="M78 107 Q100 128 122 107" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="3" stroke-linecap="round"/>
+    <!-- white shirt, collar and tie -->
+    <path d="M84 102 L116 102 L108 150 L100 168 L92 150 Z" fill="${SHIRT_WHITE}"/>
+    <path d="M95 109 L105 109 L103.5 118 L96.5 118 Z M96.5 118 L103.5 118 L107 152 L100 162 L93 152 Z" fill="${tie}"/>
+    <path d="M96.5 118 L103.5 118" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/>
+    <path d="M83 101 L96 108 L89 117 Z M117 101 L104 108 L111 117 Z" fill="${SHIRT_WHITE}" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linejoin="round"/>
+    <!-- lapels -->
+    <path d="M84 103 L100 170 L77 133 L83 127 L70 119 Z M116 103 L100 170 L123 133 L117 127 L130 119 Z" fill="${LAPEL}" stroke="rgba(0,0,0,.3)" stroke-width="1.2" stroke-linejoin="round"/>
+    <!-- breast pocket with pocket square (on the character's left side) -->
+    <path d="M120 147 L124 139 L127.5 144 L131 138 L134 147 Z" fill="${tie}"/>
+    <rect x="118" y="146" width="18" height="3" rx="1" fill="${JACKET_DARK}"/>
+    <!-- jacket buttons -->
+    <circle cx="100" cy="188" r="3" fill="${JACKET_DARK}"/><circle cx="100" cy="210" r="3" fill="${JACKET_DARK}"/>
+    <path d="M100 214 L86 262 M100 214 L114 262" fill="none" stroke="${JACKET_DARK}" stroke-width="2.5"/>
+    ${leftArm}
+    ${variant === 'phone' ? '' : rightArm}
+    <!-- Thick neck with a shadow under the jaw -->
     <g class="head">
       <circle cx="59" cy="68" r="7" fill="${skin}"/><circle cx="141" cy="68" r="7" fill="${skin}"/>
       <!-- "Gigachad" head: high cheekbones, hollow below them, flared jaw corners, broad square chin -->

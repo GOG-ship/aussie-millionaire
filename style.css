@@ -305,8 +305,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #fff; outline-offset:
 .host.speaking ~ .host-desk .name-tag { background: #3a2a00; box-shadow: 0 0 14px var(--gold); }
 
 /* --- Cartoon people (the SVG comes from personSVG() in game.js) --- */
-.person .arm-l { transform-origin: 61px 124px; }
-.person .arm-r { transform-origin: 139px 124px; }
+.person .arm-l { transform-origin: 44px 122px; }
+.person .arm-r { transform-origin: 156px 122px; }
 .person .leg-l { transform-origin: 85px 250px; }
 .person .leg-r { transform-origin: 115px 250px; }
 .person .arm, .person .leg { transition: transform .3s ease; }

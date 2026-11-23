@@ -1448,40 +1448,77 @@ async function lockIn(q, letter) {
 
 /* ---------- Lifelines ---------- */
 
-/** Make up the votes of the class. Gives e.g. { A: 12, B: 61, C: 18, D: 9 }. */
-function makeClassVotes(q, number, removed) {
-  const letters = Object.keys(q.options);
-  const wrong = letters.filter((l) => l !== q.correct && !removed.includes(l));
-  const votes = {};
-  letters.forEach((l) => { votes[l] = 0; });
-  if (!wrong.length) { votes[q.correct] = 100; return votes; }
+// Chance that the class is wrong (a "trap"): 0.5 = 50 %.
+const CLASS_TRAP_CHANCE = 0.5;
 
-  // Share of the correct answer: easy questions get more correct votes.
-  let range = number <= 4 ? [55, 75] : number <= 8 ? [40, 60] : [30, 50];
-  // After 50:50 only two answers are left, so the winner needs more than half.
-  if (wrong.length === 1) range = number <= 4 ? [65, 85] : number <= 8 ? [55, 75] : [52, 68];
-  const correctShare = randInt(range[0], range[1]);
-  votes[q.correct] = correctShare;
-
-  // Share the rest between the wrong answers (each one stays below the correct answer).
-  const rest = 100 - correctShare;
-  const base = Math.floor(rest / wrong.length);
-  wrong.forEach((l) => { votes[l] = base; });
-  votes[wrong[0]] += rest - base * wrong.length;
-  for (let i = 0; i < 12 && wrong.length > 1; i++) {
-    const pair = shuffle(wrong);
-    const amount = randInt(0, 6);
-    if (votes[pair[0]] - amount >= 1 && votes[pair[1]] + amount < correctShare) {
-      votes[pair[0]] -= amount;
-      votes[pair[1]] += amount;
-    }
-  }
-
-  // Hard questions: sometimes the class is wrong!
-  if (number >= 9 && Math.random() < 0.2) {
-    const winner = wrong[randInt(0, wrong.length - 1)];
+/**
+ * Make up the votes of the class. Gives e.g. { A: 45, B: 30, C: 15, D: 10 }.
+ * Every time, the class is either right or wrong (50:50 chance, see CLASS_TRAP_CHANCE):
+ *   - trap:  one WRONG answer gets the most votes, the CORRECT answer comes second,
+ *   - right: the CORRECT answer gets the most votes, one WRONG answer comes second,
+ *   - all other answers get fewer votes than the top two,
+ *   - answers removed by 50:50 get 0 %,
+ *   - the numbers are whole percentages and add up to 100.
+ * The numbers are first made for a trap; if the class is right, the top two swap.
+ */
+function makeClassVotes(q, removed) {
+  const votes = makeTrapVotes(q, removed);
+  const wrong = Object.keys(votes).filter((l) => l !== q.correct && votes[l] > 0);
+  if (wrong.length && Math.random() >= CLASS_TRAP_CHANCE) {
+    // The class is right: the correct answer swaps places with the most popular wrong answer.
+    const winner = wrong.reduce((a, b) => (votes[b] > votes[a] ? b : a));
     [votes[q.correct], votes[winner]] = [votes[winner], votes[q.correct]];
   }
+  return votes;
+}
+
+/** Votes where one wrong answer wins and the correct answer is second (see makeClassVotes). */
+function makeTrapVotes(q, removed) {
+  const letters = Object.keys(q.options);
+  const wrong = shuffle(letters.filter((l) => l !== q.correct && !removed.includes(l)));
+  const votes = {};
+  letters.forEach((l) => { votes[l] = 0; });
+  if (!wrong.length) { votes[q.correct] = 100; return votes; }   // (cannot happen with 4 answers)
+
+  const winner = wrong[0];          // the wrong answer the class likes most
+  const others = wrong.slice(1);    // the other wrong answers (none after 50:50)
+
+  // After 50:50 only two answers are left: winner 55-70 %, correct answer gets the rest (30-45 %).
+  if (!others.length) {
+    votes[winner] = randInt(55, 70);
+    votes[q.correct] = 100 - votes[winner];
+    return votes;
+  }
+
+  // Four answers: winner 38-52 %, second place 25 % up to 6 points below the winner,
+  // every other answer at least 4 % and at least 5 points below second place.
+  for (let attempt = 0; attempt < 50; attempt++) {
+    const top = randInt(38, 52);
+    const second = randInt(25, top - 6);
+    let rest = 100 - top - second;
+    const shares = [];
+    for (let i = 0; i < others.length; i++) {
+      const left = others.length - 1 - i;                 // answers still waiting for a share
+      const low = Math.max(4, rest - (second - 5) * left);
+      const high = Math.min(second - 5, rest - 4 * left);
+      if (low > high) break;                              // does not fit: try new numbers
+      const share = left ? randInt(low, high) : rest;
+      shares.push(share);
+      rest -= share;
+    }
+    if (shares.length !== others.length || rest !== 0) continue;
+    votes[winner] = top;
+    votes[q.correct] = second;
+    others.forEach((l, i) => { votes[l] = shares[i]; });
+    return votes;
+  }
+
+  // Safety net (never needed in practice): a fixed, valid result.
+  const fixed = [45, 30, 15, 10];
+  votes[winner] = fixed[0];
+  votes[q.correct] = fixed[1];
+  const restShare = Math.floor(25 / others.length);
+  others.forEach((l, i) => { votes[l] = i ? restShare : 25 - restShare * (others.length - 1); });
   return votes;
 }
 
@@ -1499,7 +1536,7 @@ const LIFELINES = {
   /** Ask the Class – four bars grow on the big screen. */
   async askClass(q) {
     await say(DATA.extras.askClass);
-    game.votes = makeClassVotes(q, game.index + 1, game.removed);
+    game.votes = makeClassVotes(q, game.removed);
     const poll = $('poll');
     if (!poll) return;
     poll.textContent = '';
